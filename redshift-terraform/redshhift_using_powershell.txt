@@ -1,0 +1,28 @@
+# Set your AWS credentials and region
+$accessKey = "xyz"
+$secretKey = "xyz"
+$region = "us-east-1"
+
+# Install and import the AWS module
+Install-Module -Name AWSPowerShell.NetCore -Force
+Import-Module AWSPowerShell.NetCore -Force
+
+# Set the AWS credentials and region
+Set-AWSCredentials -AccessKey $accessKey -SecretKey $secretKey
+Set-DefaultAWSRegion -Region $region
+
+# Set the Redshift cluster details
+$clusterIdentifier = "my-redshift-cluster"
+$masterUsername = "admin"
+$masterPassword = "mypassword123"
+$nodeType = "dc2.large"
+$numberOfNodes = 2
+$databaseName = "mydatabase"
+
+# Create the Redshift cluster
+New-RSCluster -ClusterIdentifier $clusterIdentifier `
+              -MasterUsername $masterUsername `
+              -MasterUserPassword $masterPassword `
+              -NodeType $nodeType `
+              -NumberOfNodes $numberOfNodes `
+              -DatabaseName $databaseName
